@@ -14,3 +14,16 @@ def recalculate_centroid(points):
     for point in points:
         summation = np.add(summation, point)
     return np.round((summation / len(points)), 1)
+
+# It calculates the range of each coordinate in the space.
+def calculate_range(entries):
+    min_range = np.copy(entries[0])
+    max_range = np.copy(entries[0])
+    for entry in entries:
+        for i in range(len(entry)):
+            if(entry[i] < min_range[i]):
+                min_range[i] = entry[i]
+            if(entry[i] > max_range[i]):
+                max_range[i] = entry[i]
+
+    return min_range,max_range

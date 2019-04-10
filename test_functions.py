@@ -17,3 +17,14 @@ def test_recalculate_centroid():
     assert(np.array_equal(functions.recalculate_centroid(cluster_a), [1.5, 2.5]))
     assert(np.array_equal(functions.recalculate_centroid(cluster_b), [4.3,5.3,6.3]))
     assert(np.array_equal(functions.recalculate_centroid(cluster_c), [-0.5,1,1.5,-2]))
+
+def test_calculate_range():
+    entries_a = [[1,2,3],[4,5,6],[7,8,9]]
+    min_a,max_a = functions.calculate_range(entries_a)
+    assert all(min_a == [1,2,3])
+    assert all(max_a == [7,8,9])
+
+    entries_b = [[1,2,-3],[-1,3,4],[8,-20,2]]
+    min_b,max_b = functions.calculate_range(entries_b)
+    assert all(min_b == [-1,-20,-3])
+    assert all(max_b == [8,3,4])
