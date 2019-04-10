@@ -28,3 +28,8 @@ def test_calculate_range():
     min_b,max_b = functions.calculate_range(entries_b)
     assert all(min_b == [-1,-20,-3])
     assert all(max_b == [8,3,4])
+
+    entries_c = [[1.2,2.2,3.2]]
+    min_c, max_c = functions.calculate_range(entries_c)
+    assert all(min_c == [1,2,3])
+    assert all(max_c == [2,3,4])
