@@ -33,3 +33,11 @@ def test_calculate_range():
     min_c, max_c = functions.calculate_range(entries_c)
     assert all(min_c == [1,2,3])
     assert all(max_c == [2,3,4])
+
+def test_calculate_clusters():
+    centroids_a = [[1.5,2.5],[4.5,6.5]]
+    points_a = [[1.1,2.2], [2.2,3.3], [5.5,7.8]]
+    cluster_a = {"0" : [[1.1,2.2],[2.2,3.3]],
+                 "1" : [[5.5,7.8]]
+    }
+    assert(functions.calculate_clusters(centroids_a, points_a) == cluster_a)

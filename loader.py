@@ -15,6 +15,6 @@ def load():
         points = [float(point) for point in line]
         entries.append(points)
     f.close()
-    
+
     entries = np.array(entries)
-    return entries
+    return entries, int(dimension), int(number_of_entries)
