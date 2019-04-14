@@ -5,10 +5,13 @@ import numpy as np      # Arrays for high performance operations
 
 
 def test_euclid_distance():
-    assert round(functions.euclid_distance([0,3,4,5],[7,6,3,-1]),3) == 9.747
-    assert round(functions.euclid_distance([1,2],[3,4]),3) == 2.828
-    assert round(functions.euclid_distance([1.5, 2.3],[1.5, 2.3]), 3) == 0.000
-    assert round(functions.euclid_distance([1.5, 2.3],[2.3, 1.5]), 3) == 1.131
+    assert functions.euclid_distance([0,3,4,5],[7,6,3,-1]) == 9.7
+    assert functions.euclid_distance([1,2],[3,4]) == 2.8
+    assert functions.euclid_distance([1.5, 2.3],[1.5, 2.3]) == 0.0
+    assert functions.euclid_distance([1.5, 2.3],[2.3, 1.5]) == 1.1
+    assert functions.euclid_distance([1,2,3],[2,4,5]) == 3.0
+    assert functions.euclid_distance([1,2,3],[3,4,5]) == 3.5
+
 
 def test_recalculate_centroid():
     cluster_a = [[1,1],[2,4]]
@@ -41,3 +44,9 @@ def test_calculate_clusters():
                  "1" : [[5.5,7.8]]
     }
     assert(functions.calculate_clusters(centroids_a, points_a) == cluster_a)
+
+def test_calculate_SSE():
+    centroids_a = [[1,2,3]]
+    cluster_a = {"0" : [[2,4,5], [3,4,5]]}
+
+    assert(functions.SSE(centroids_a, cluster_a) == 21.25)
