@@ -2,8 +2,13 @@ import sys              # Command line arguments
 import re               # Regular expressions
 import numpy as np      # Arrays for high performance operations
 
-def load():
-    f = open(sys.argv[1], "r")
+def load(*args, **kwds):
+    file = ""
+    if len(args) == 0:
+        file = sys.argv[1]
+    elif len(args) == 1 and isinstance(args[0], str):
+        file = args[0]
+    f = open(file, "r")
     number_of_entries = f.readline()
     dimension = f.readline()
     entries = []

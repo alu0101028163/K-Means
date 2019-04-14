@@ -11,11 +11,15 @@ def euclid_distance(point_a, point_b):
         summation += pow(coordinate_a - coordinate_b , 2)
     return np.round(math.sqrt(summation),1)
 
-def recalculate_centroid(points):
-    summation = np.zeros(len(points[0]))
-    for point in points:
-        summation = np.add(summation, point)
-    return np.round((summation / len(points)), 1)
+# Esta función está petando en la primera línea.
+def recalculate_centroid(points, centroid):
+    if(len(points) > 0):
+        summation = np.zeros(len(points[0]))
+        for point in points:
+            summation = np.add(summation, point)
+        return np.round((summation / len(points)), 1)
+    else:
+        return centroid
 
 
 # It calculates the range of each coordinate in the space.
@@ -68,8 +72,11 @@ def k_means(k, points):
     while(change):
         clusters = calculate_clusters(centroids, points)
         for i in range(len(centroids)):
-            new_centroid = recalculate_centroid(clusters[str(i)])
-            change = ( all(new_centroid != centroids[i]))
+            new_centroid = recalculate_centroid(clusters[str(i)], centroids[i])
+            change = False
+            for point_new, point_old in zip(new_centroid, centroids[i]):
+                if (point_new != point_old):
+                    change = True
             centroids[i] = new_centroid
 
     return centroids, clusters
@@ -81,6 +88,5 @@ def SSE(centroids, clusters):
         cluster_sum = 0
         for point in clusters[str(i)]:
             cluster_sum += pow(euclid_distance(centroids[i], point),2)
-            print(euclid_distance(centroids[i], point))
         total_sum += cluster_sum
     return total_sum

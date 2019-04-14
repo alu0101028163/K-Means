@@ -1,6 +1,8 @@
 import functions
 import loader
 import sys
+import time
+import os
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
@@ -44,4 +46,20 @@ elif(dimension == 2 and (mode == "-g" or mode == "--graphic")):
 
     plt.show()
 
-# elif mode == '--test'
+elif (mode == '--test'):
+
+    allLines = []
+    fileList = os.listdir("./")
+    for file in fileList:
+        if ".txt" in file:
+            print(file)
+            points, dimension, size = loader.load(file)
+            k = int(sys.argv[2])
+            mode = sys.argv[3]
+
+            print("%5s %5s %5s %5s %5s %10s"%("Problema","m","K","Ejecución","SSE","CPU"))
+            for i in range(5):
+                start = time.time()
+                centroids, clusters = functions.k_means(k, points)
+                end = time.time()
+                print("%5s %4i %5i %5i %12f %5f" % (file, size, k, i, functions.SSE(centroids,clusters), (end-start)))
