@@ -27,7 +27,11 @@ if(dimension == 3 and (mode == "-g" or mode == "--graphic")):
     for key, cluster in clusters.items():
         cluster = np.array(cluster)
         centroid = centroids[int(key)]
-        ax.scatter(cluster[:,0],cluster[:,1], cluster[:,2], color = colors[int(key)], marker = 'o')
+
+        assert(int(key) < len(colors))
+
+        if (len(cluster) > 0):
+            ax.scatter(cluster[:,0],cluster[:,1], cluster[:,2], color = colors[int(key)], marker = 'o')
         ax.scatter(centroid[0],centroid[1], centroid[2], color = colors[int(key)], marker = "s")
 
     plt.show()
@@ -41,7 +45,11 @@ elif(dimension == 2 and (mode == "-g" or mode == "--graphic")):
     for key, cluster in clusters.items():
         cluster = np.array(cluster)
         centroid = centroids[int(key)]
-        ax.scatter(cluster[:,0],cluster[:,1], color = colors[int(key)], marker = 'o')
+
+        assert(int(key) < len(colors))
+
+        if (len(cluster) > 0):
+            ax.scatter(cluster[:,0],cluster[:,1], color = colors[int(key)], marker = 'o')
         ax.scatter(centroid[0],centroid[1], color = colors[int(key)], marker = "s")
 
     plt.show()
