@@ -5,7 +5,7 @@ import numpy as np      # Arrays for high performance operations
 def load(*args, **kwds):
     file = ""
     if len(args) == 0:
-        file = sys.argv[1]
+        file = sys.argv[2]
     elif len(args) == 1 and isinstance(args[0], str):
         file = args[0]
     f = open(file, "r")
