@@ -9,6 +9,15 @@ import numpy as np
 
 colors = ['blue','green','red','cyan','magenta','yellow','black','white']
 mode = sys.argv[1]
+'''
+-----------------------------------------------------------------
+                            TEST MODE
+    Lee todas los ficheros .txt y los ejecuta con diversas k
+    para obtener el rendimiento general del algoritmo.
+    Ejemplo de uso: $python3 main.py --test
+-----------------------------------------------------------------
+'''
+
 
 if (mode == '--test'):
 
@@ -35,6 +44,15 @@ else:
     k = int(sys.argv[3])
     centroids, clusters = functions.k_means(k, points)
 
+
+    # -------------------------------------------------------------------
+    #                             3D MODE
+    #     Visualiza el algoritmo K-means en 3D solamente si las
+    #     dimensiones de la entrada son 3.
+    #     Ejemplo de uso: $python3 main.py -g nombre_fichero.txt k
+    # -------------------------------------------------------------------
+    #
+
     if(dimension == 3 and (mode == "-g" or mode == "--graphic")):
         assert(len(sys.argv) == 4)
 
@@ -53,6 +71,13 @@ else:
             ax.scatter(centroid[0],centroid[1], centroid[2], color = colors[int(key)], marker = "s")
 
         plt.show()
+
+    # -------------------------------------------------------------------
+    #                             2D MODE
+    #     Visualiza el algoritmo K-means en 2D solamente si las
+    #     dimensiones de la entrada son 2.
+    #     Ejemplo de uso: $python3 main.py k nombre_fichero.txt k
+    # -------------------------------------------------------------------
 
     elif(dimension == 2 and (mode == "-g" or mode == "--graphic")):
         assert(len(sys.argv) == 4)
